@@ -4,6 +4,11 @@ required_plugins.each do |plugin|
     exec "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
 end
 
+obj = {
+  DB_HOST: "192.168.100.140"
+}
+
+
 def create_env_var(obj)
   string = <<~HEREDOC
   HEREDOC
@@ -33,7 +38,7 @@ Vagrant.configure("2") do |config|
     app.hostsupdater.aliases = ["development.local"]
     app.vm.synced_folder("app", "/home/ubuntu/app")
     app.vm.synced_folder("environment/app", "/home/ubuntu/environment")
-    app.vm.provision("shell", inline: create_env_var({DB_HOST: "192.168.100.140"}), privileged: false)
+    app.vm.provision("shell", inline: create_env_var(obj), privileged: false)
     app.vm.provision("shell", path: "environment/app/provision.sh", privileged: false)
   end
 end
