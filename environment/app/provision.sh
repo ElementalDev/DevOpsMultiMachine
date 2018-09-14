@@ -20,17 +20,14 @@ sudo apt-get install nodejs -y
 # install pm2
 sudo npm install pm2 -g
 
-# # Add the environment variable for DB_HOST to the bashrc
-# echo "export DB_HOST=192.168.10.150" >> ~/.bashrc
-#
-# # Resource the bashrc to the terminal
-# source ~/.bashrc
+# Create and link file with the default file
+sudo ln -s /home/ubuntu/environment/default.conf /etc/nginx/conf.d/default.conf
 
-# # Go to the app
-# cd /home/ubuntu/app
-#
-# # Install the dependancies
-# npm i
-#
-# # Run the app
-# node app.js
+# Restart the server
+sudo nginx -s reload
+
+# Go to the app
+cd /home/ubuntu/app
+
+# Install the dependancies
+npm i
