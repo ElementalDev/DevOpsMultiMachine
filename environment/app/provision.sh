@@ -25,9 +25,3 @@ sudo ln -s /home/ubuntu/environment/nodeapp.conf /etc/nginx/conf.d/nodeapp.conf
 
 # Restart the server
 sudo nginx -s reload
-
-# Go to the app
-cd /home/ubuntu/app
-
-# Install the dependancies
-npm i
